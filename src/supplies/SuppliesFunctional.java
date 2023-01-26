@@ -3,6 +3,7 @@ package supplies;
 
 import supplies.sales.Customer;
 import supplies.sales.Database;
+import supplies.sales.Product;
 import supplies.sales.Sale;
 
 import java.util.*;
@@ -40,7 +41,7 @@ public class SuppliesFunctional {
                 System.out.println(lessSatisfaction(sales));
                 break;
             case "3":
-
+                System.out.println(soldSupl(sales));
                 break;
             case "4":
 
@@ -64,6 +65,10 @@ public class SuppliesFunctional {
         return sales.stream().map(Sale::getCustomer)
                 .filter(customer -> customer.getSatisfaction().equals(1))
                 .sorted(Comparator.comparing(Customer::getEmail)).collect(Collectors.toList());
+    }
+
+    public static List<String> soldSupl(ArrayList<Sale> sales){
+        return sales.stream().flatMap(s -> s.getItems().stream()).map(Product::getName).distinct().collect(Collectors.toList());
     }
 //    public static OptionalInt lessSatisfactionNum(ArrayList<Sale> sales){
 //        return sales.stream().mapToInt(x -> x.getCustomer().getSatisfaction()).min();
