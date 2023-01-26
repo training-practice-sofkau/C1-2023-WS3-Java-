@@ -24,22 +24,28 @@ public class WarmingUp {
         * Given a list of strings, use the Stream API to group the strings by their length, and return a map where the keys are the lengths and the values are lists of strings with that length.
         */
 
-        System.out.println("\n");
+        System.out.println("");
         lengthMap(Data.words).forEach((key, values) -> System.out.println("" + key + values));
 
         /*
         * Given a list of strings, use the Stream API to group the strings by their first letter, and return a map where the keys are the first letters and the values are lists of strings that start with that letter.
         */
 
-        System.out.println("\n");
+        System.out.println("");
         wordsGrouper(Data.words).forEach((key, values) -> System.out.println("" + key + values));
 
         /*
         * Given a list of people, use the Stream API to group the people by their age, and return a map where the keys are the ages and the values are lists of people with that age.
         */
 
-        //System.out.println("\n");
-        //peopleGrouper(Data.people).forEach((key, values) -> System.out.println("" + key + values));
+        System.out.println("\n");
+        peopleGrouper(Data.people).forEach((Integer key, List<People> values) -> {
+            System.out.print(key + " ");
+            for (People p : values) {
+                System.out.print(p.getName() + " ");
+            }
+            System.out.println("");
+        });
 
         /*
         * Given a list of strings, use the Stream API to filter out strings that have a length less than 4, reverse the remaining strings, and return a new list of the modified strings.
@@ -49,7 +55,6 @@ public class WarmingUp {
     }
 
     public static Map<Integer, List<People>> peopleGrouper(List<People> people){
-
         return people.stream()
                 .collect(Collectors.groupingBy(People::getAge));
     }
