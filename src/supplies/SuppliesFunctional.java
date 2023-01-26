@@ -63,7 +63,6 @@ public class SuppliesFunctional {
         //issue renaming keys
         return salesNY.stream().collect(Collectors.groupingBy(sale -> sale.getCouponUsed() ? "Used": "Not used"));
 
-                //Map<Boolean, List<Sale>> temp = salesNY.stream().collect(Collectors.groupingBy(Sale::getCouponUsed));
     }
 
     public static List<Customer> ex2CustomerSat (List<Sale> salesNY) {
@@ -74,7 +73,7 @@ public class SuppliesFunctional {
                 .collect(Collectors.toList());
     }
 
-    //Issue with sorting method
+
     public static List<String> ex3Products (List<Sale> salesNY){
         return salesNY.stream()
                 .flatMap(sale -> sale.getItems().stream().map(item->item.getName()))
@@ -84,26 +83,28 @@ public class SuppliesFunctional {
     }
 
 
-/*
+
     public static Map<List<String>, Long> ex4ProductsPerTag (List<Sale> salesNY) {
-        return salesNY.stream().
-                collect(Collectors.
-                        groupingBy(sale -> sale.getItems().stream()
-                                .map(item -> item.getTags()))).collect(Collectors.toList())),
-                                Collectors.counting()));
+        //get a list of unique tags
+        //with streams make a filter with each tag and then unique and then count operation of the items
+
+        //List<String> tags = salesNY.stream().flatMap(sale -> sale.getItems().stream().map(items ->items.getTags())).distinct().collect(Collectors.toList());
+
+         //collect(Collectors.toList())),
+                             //   Collectors.counting()));
                                 //Collectors.mapping(Sale::getSaleDate, Collectors.toList())));
 
-        //return null;
+        return null;
     };
 
-*/
 
 
-    //Issues with the keys
+
+
     public static TreeMap<Integer, List<Date>> ex5SalesPerYear (List<Sale> salesNY) {
         Map<Integer, List<Date>> temp = salesNY.stream().collect(Collectors.groupingBy(sale -> sale.getSaleDate().getYear()+1900, TreeMap::new, Collectors.mapping(Sale::getSaleDate, Collectors.toList())));
         return (TreeMap)temp;
-        //return salesNY.stream().collect(Collectors.groupingBy(sale -> sale.getSaleDate().getYear()));
+
     }
 
 
