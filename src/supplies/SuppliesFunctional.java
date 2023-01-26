@@ -47,7 +47,7 @@ public class SuppliesFunctional {
                 result3.forEach(System.out::println);
                 break;
             case "4":
-                Map<Date, List<Sale>> result4 = case4();
+                Map<Integer, List<Sale>> result4 = case4();
                 result4.forEach((key, value) -> System.out.println(key + ","+ value));
                 break;
             case "5":
@@ -85,13 +85,19 @@ public class SuppliesFunctional {
                 .collect(Collectors.toList());
     }
 
-    public static Map<Date, List<Sale> > case4() {
+    public static Map<Integer, List<Sale> > case4() {
 
         return sales.stream().
-                collect(Collectors.groupingBy(Sale::getSaleDate));
+                collect(Collectors.groupingBy(s -> s.getSaleDate().getYear(), Collectors.toList()));
     }
 
     public static void case5() {
+
+//                sales.stream()
+//                .collect(Collectors.groupingBy(
+//                        s -> s.getItems()
+//                        Collectors.summingInt(p -> p.getProduct().getAmount()) //sum all the amount of products by tag
+//                ));
 
     }
 }
