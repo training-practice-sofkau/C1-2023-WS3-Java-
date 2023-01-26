@@ -8,4 +8,20 @@ public class Data {
 
     public static List<String> words = List.of("Wish", "Seventeen", "Rust", "Down", "Oven", "Nine", "Hearth", "Homecoming", "One", "Wagon");
 
+    public static List<People> people = List.of(
+            new People("Larry", 27, "M"),
+            new People("Alejandra", 30, "F"),
+            new People("Estefania", 30, "F"),
+            new People("Esteban", 25, "M"),
+            new People("Johann", 31, "M"),
+            new People("Maria", 45, "F"),
+            new People("Daniela", 26, "F"),
+            new People("Lina", 25, "F"),
+            new People("Robert", 42, "M"),
+            new People("Andrea", 30, "F")
+    );
+
+
+
+
 }
