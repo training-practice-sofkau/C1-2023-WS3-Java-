@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class WarmingUp {
     public static void main(String[] args) {
-        System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
 
@@ -24,6 +24,19 @@ public class WarmingUp {
 
         * Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
 */
+
+
+        //1
+        System.out.println(squareSumNumbers(List.of(1,2,3,4,8)));
+
+        //2
+        //greaterThanFive(List.of("even","splitter","odd","null","joy","kayak","fair","soccer","spider man","dexter")).forEach(System.out::println);
+
+        //3
+        System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+
+        //4
+
     }
 
     public static Map<Integer,List<String>> lengthMap(List<String> words){
@@ -31,4 +44,9 @@ public class WarmingUp {
         return words.stream().collect(Collectors.groupingBy(String::length));
 
     }
+
+    public static double squareSumNumbers(List<Integer> listNumbs){
+        return listNumbs.stream().filter(n->n%2==0).map(even -> Math.pow(even,2)).reduce(0.0,Double::sum);
+    }
+
 }
