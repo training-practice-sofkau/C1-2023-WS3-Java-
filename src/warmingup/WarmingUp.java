@@ -36,6 +36,21 @@ public class WarmingUp {
         //Ex4
         System.out.println("Exercise 4:");
         System.out.println(ex4FirstLetterMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+
+        //Ex5
+        System.out.println("Exercise 5:");
+        System.out.println(ex5FirstLetterMap(List.of(
+                new People("Fulano", 40, "M"),
+                new People("Sutano", 60, "M"),
+                new People("Fulanito", 15, "M"),
+                new People("Sutanito", 12, "M"),
+                new People("Fulana", 60, "F"),
+                new People("Sutana", 40, "F"),
+                new People("Fulanita", 12, "F"),
+                new People("Sutanita", 15, "F"),
+                new People("Menganito", 5, "M"),
+                new People("Menganita", 5, "F")
+        )));
     }
 
     //Exercise 1
@@ -56,5 +71,10 @@ public class WarmingUp {
     //Exercise 4
     public static Map<String,List<String>> ex4FirstLetterMap(List<String> words){
         return words.stream().collect(Collectors.groupingBy(s-> s.substring(0,1)));
+    }
+
+    //Exercise 5
+    public static Map<Integer,List<People>> ex5FirstLetterMap(List<People> people){
+        return people.stream().collect(Collectors.groupingBy(People::getAge));
     }
 }
