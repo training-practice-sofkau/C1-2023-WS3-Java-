@@ -18,6 +18,7 @@ public class SuppliesFunctional {
         //sales.forEach(System.out::println);
         
 
+
     }
 
     public static void loadSalesPerYear(){
@@ -26,13 +27,22 @@ public class SuppliesFunctional {
                 .descendingMap()
                 .forEach((k, values) -> System.out.println(k + ": " + values));
 
+        loadSoldSupplies();
+
+    }
+
+
+    public static void loadSoldSupplies() {
+        sales.stream()
+                .flatMap(s -> s.getItems())
+                .forEach(System.out::println);
     }
 
     public static void loadLowerScore(){
         Integer minScore = sales.stream()
                 .mapToInt(n -> n.getCustomer().getSatisfaction())
-                .min().
-                getAsInt();
+                .min()
+                .getAsInt();
 
         sales.stream()
                 .filter(s -> s.getCustomer().getSatisfaction() == minScore)
