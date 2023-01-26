@@ -1,14 +1,27 @@
 package warmingup;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+
+import static java.lang.Math.pow;
 
 public class WarmingUp {
     public static void main(String[] args) {
+
         System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+
+
+
+
+        // First exercise
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Optional<Integer> total = numbers.stream().filter(i -> i%2 != 0).map(a -> a*a).reduce((a, b) -> a + b);
+        System.out.println("The total is: " + total.get());
+
+        // Second exercise
+
+
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
 
@@ -31,4 +44,16 @@ public class WarmingUp {
         return words.stream().collect(Collectors.groupingBy(String::length));
 
     }
-}
+
+
+
+
+    }
+
+
+
+
+
+
+
+
