@@ -13,8 +13,7 @@ public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
         //loadMenu();
-        sales.forEach(System.out::println);
-
+        loadMenu();
     }
 
     public static void menu(){
@@ -35,7 +34,7 @@ public class SuppliesFunctional {
         String op=sc.nextLine();
         switch(op){
             case "1":
-
+                System.out.println(cuponNy(sales));
                 break;
             case "2":
 
@@ -56,6 +55,10 @@ public class SuppliesFunctional {
     }
 
 
+public static Map<String, List<Sale>> cuponNy(ArrayList<Sale> sales){
+    return sales.stream().filter(s -> Objects.equals(s.getLocation(), "New York"))
+            .collect(Collectors.groupingBy(x -> x.getCouponUsed() ? "Use" : "No use"));
+}
 
 
 }
