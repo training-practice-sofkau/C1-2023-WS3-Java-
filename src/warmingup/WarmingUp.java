@@ -26,25 +26,53 @@ public class WarmingUp {
 */
 
         // Solving exercise 1:
+        System.out.println("================================================================");
+        System.out.println("Exercise number one:");
+        System.out.println();
         System.out.println(exercise1());
+        System.out.println();
 
         // Solving exercise 2:
+        System.out.println("================================================================");
+        System.out.println("Exercise number two:");
+        System.out.println();
         System.out.println(exercise2());
+        System.out.println();
 
         // Solving exercise 3:
+        System.out.println("================================================================");
+        System.out.println("Exercise number three:");
+        System.out.println();
         System.out.println(exercise3());
+        System.out.println();
 
         // Solving exercise 4:
+        System.out.println("================================================================");
+        System.out.println("Exercise number four:");
+        System.out.println();
         System.out.println(exercise4());
+        System.out.println();
 
         // Solving exercise 5:
+        System.out.println("================================================================");
+        System.out.println("Exercise number five:");
+        System.out.println();
         System.out.println(exercise5());
+        System.out.println();
 
         // Solving exercise 6:
+        System.out.println("================================================================");
+        System.out.println("Exercise number six:");
+        System.out.println();
         System.out.println(exercise6());
+        System.out.println();
 
         // Solving exercise 7:
+        System.out.println("================================================================");
+        System.out.println("Exercise number seven:");
+        System.out.println();
         System.out.println(exercise7());
+        System.out.println();
     }
     public static int exercise1() {
 
@@ -68,11 +96,14 @@ public class WarmingUp {
 
     private static Map<Integer, List<String>>  exercise3() {
         List<String> strings = List.of("Juan", "Jose", "Jerry", "Thomas", "daddy","Kathie");
-        return strings.stream().collect(Collectors.groupingBy(String::length));
+        return strings.stream()
+                .collect(Collectors.groupingBy(String::length));
     }
 
-    private static boolean exercise4() {
-        return false;
+    private static Map<Character, List<String>> exercise4() {
+        List<String> strings = List.of("Society", "Social", "Enjoy", "Enterprise", "Political","Possession");
+        return strings.stream()
+                .collect(Collectors.groupingBy(s -> s.charAt(0)));
     }
 
     private static boolean exercise5() {
