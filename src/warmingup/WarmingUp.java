@@ -28,20 +28,27 @@ public class WarmingUp {
         System.out.println("Exercise 1.");
         System.out.println(ex1EvenNumbers(List.of(1,2,1,2,1,2,1,2,1,10)));
 
+        //Ex2
+        System.out.println("Exercise 2:");
+        System.out.println(ex2Strings2UpperCase(List.of("Hi","Helloo", "world","world!", "how", "how are", "u", "u doing?", "today", ".")));
+
         //Ex3
         System.out.println("Exercise 3:");
         System.out.println(ex3LengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
     }
 
+    //Exercise 1
     public static Integer ex1EvenNumbers(List<Integer> numbers ){
-
         return numbers.stream().filter(x -> x%2==0).map(x -> x*x).mapToInt(Integer::valueOf).sum();
-
-
     }
 
+    //Exercise 2
+    public static List<String> ex2Strings2UpperCase(List<String> strings){
+        return strings.stream().filter(x -> x.length()>5).map(x-> x.toUpperCase()).collect(Collectors.toList());
+    }
+
+    //Exercise 3
     public static Map<Integer,List<String>> ex3LengthMap(List<String> words){
-        //First I need to know the length of the words
         return words.stream().collect(Collectors.groupingBy(String::length));
     }
 }
