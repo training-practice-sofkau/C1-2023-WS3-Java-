@@ -91,13 +91,12 @@ public class SuppliesFunctional {
                 collect(Collectors.groupingBy(s -> s.getSaleDate().getYear(), Collectors.toList()));
     }
 
-    public static void case5() {
+    public static Map<List<String>, Integer> case5() {
 
-//                sales.stream()
-//                .collect(Collectors.groupingBy(
-//                        s -> s.getItems()
-//                        Collectors.summingInt(p -> p.getProduct().getAmount()) //sum all the amount of products by tag
-//                ));
-
+        return null;
+//        return sales.stream()
+//                .flatMap(sale -> sale.getItems().stream()
+//                .map(Product::getTags)
+//                .collect(Collectors.groupingBy()));
     }
 }
