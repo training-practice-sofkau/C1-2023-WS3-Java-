@@ -107,18 +107,10 @@ public class WarmingUp {
     }
 
     public static int sumSquares(List<Integer> numbers) {
-        List<Integer> powNumbers = new ArrayList<Integer>();
-        Integer result = 0;
-
-        numbers.stream()
+        return numbers.stream()
                 .filter(n -> n % 2 != 0)
-                .forEach(n -> powNumbers.add((int) Math.pow(n, 2)));
-
-        for (Integer n : powNumbers) {
-            result += n;
-        }
-
-        return result;
+                .map(n ->  Math.pow(n, 2))
+                .mapToInt(Double::intValue)
+                .sum();
     }
-
 }
