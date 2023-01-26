@@ -21,6 +21,6 @@ public class Sale {
     private Boolean couponUsed;
     private String purchasedMethod;
     private Customer customer;
-    private Double total;
+    //private Double total;
 
 }

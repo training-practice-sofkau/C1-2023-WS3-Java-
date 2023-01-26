@@ -2,11 +2,11 @@ package supplies;
 
 
 import supplies.sales.Database;
+import supplies.sales.Product;
 import supplies.sales.Sale;
 
-import java.util.ArrayList;
-
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class SuppliesFunctional {
@@ -20,10 +20,10 @@ public class SuppliesFunctional {
     public static void menu(){
         System.out.println("Supplies sales");
         System.out.println("1. Sales located in NY that use / does not use a coupon");
-        System.out.println("2. Customers that spent more and less");
-        System.out.println("3. Amount of products per tag");
+        System.out.println("2. Customers that gives the lower satisfaction score.");
+        System.out.println("3. Sold supplies");
         System.out.println("4. Sales categorized per year");
-        System.out.println("5. Sold supplies");
+        System.out.println("5. Amount of products per tag");
         System.out.println("6. Exit");
 
     }
@@ -54,6 +54,8 @@ public class SuppliesFunctional {
         }
 
     }
+
+
 
 
 }

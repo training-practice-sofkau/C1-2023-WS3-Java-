@@ -1,7 +1,14 @@
 package warmingup;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class WarmingUp {
     public static void main(String[] args) {
+        System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
 
@@ -17,5 +24,11 @@ public class WarmingUp {
 
         * Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
 */
+    }
+
+    public static Map<Integer,List<String>> lengthMap(List<String> words){
+        //First I need to know the length of the words
+        return words.stream().collect(Collectors.groupingBy(String::length));
+
     }
 }
