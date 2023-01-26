@@ -30,7 +30,7 @@ public class WarmingUp {
         System.out.println(squareSumNumbers(List.of(1,2,3,4,8)));
 
         //2
-        //greaterThanFive(List.of("even","splitter","odd","null","joy","kayak","fair","soccer","spider man","dexter")).forEach(System.out::println);
+        greaterThanFive(List.of("even","splitter","odd","null","joy","kayak","fair","soccer","spider man","dexter")).forEach(System.out::println);
 
         //3
         System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
@@ -47,6 +47,11 @@ public class WarmingUp {
 
     public static double squareSumNumbers(List<Integer> listNumbs){
         return listNumbs.stream().filter(n->n%2==0).map(even -> Math.pow(even,2)).reduce(0.0,Double::sum);
+    }
+
+    public static List<String> greaterThanFive(List<String> myStrings){
+
+        return myStrings.stream().filter(s->s.length()>5).map(String::toUpperCase).collect(Collectors.toList());
     }
 
 }
