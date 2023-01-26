@@ -106,8 +106,22 @@ public class WarmingUp {
                 .collect(Collectors.groupingBy(s -> s.charAt(0)));
     }
 
-    private static boolean exercise5() {
-        return false;
+    private static Map<Integer, List<People>> exercise5() {
+        List<People> people = List.of(
+                new People("Juan", 24, "M"),
+                new People("Jose",24, "M"),
+                new People("Kathie", 44, "F"),
+                new People("Katherine", 17, "F"),
+                new People("Jamie", 44, "M"),
+                new People("Tom", 58, "M"),
+                new People("Ashley", 88, "F"),
+                new People("Justin", 58, "M"),
+                new People("Timmy", 17, "M"),
+                new People("Serena", 24, "F")
+        );
+
+        return people.stream()
+                .collect(Collectors.groupingBy(People::getAge));
     }
 
     private static boolean exercise6() {
