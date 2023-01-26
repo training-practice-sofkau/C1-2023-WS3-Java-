@@ -12,11 +12,8 @@ import java.util.stream.Collectors;
 public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
-        //loadMenu();
+        loadMenu();
         //sales.forEach(System.out::println);
-        loadProductsSold();
-
-
     }
 
     public static void loadProductsSold() {
@@ -44,17 +41,8 @@ public class SuppliesFunctional {
                 .collect(Collectors.groupingBy(s -> "\n\n"+(s.getSaleDate().getYear()+1900)+"\n\n",TreeMap::new, Collectors.toList()))
                 .descendingMap()
                 .forEach((k, values) -> System.out.println(k + ": " + values));
-
-        loadSoldSupplies();
-
     }
 
-
-    public static void loadSoldSupplies() {
-        sales.stream()
-                .flatMap(s -> s.getItems())
-                .forEach(System.out::println);
-    }
 
     public static void loadLowerScore(){
         Integer minScore = sales.stream()
