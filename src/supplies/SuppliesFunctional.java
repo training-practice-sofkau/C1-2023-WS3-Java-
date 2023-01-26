@@ -103,7 +103,6 @@ public class SuppliesFunctional {
                 })
             ));
         System.out.println(soldTags);
-
         return null;
     }
 }

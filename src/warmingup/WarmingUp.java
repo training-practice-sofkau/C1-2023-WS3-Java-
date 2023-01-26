@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class WarmingUp {
     public static void main(String[] args) {
-        List<String> stringsList = List.of("apple", "melon", "pinneapple", "mango", "lemon", "blueberry", "banana", "strawberry", "kiwi", "maracuya", "pitahaya");
+        List<String> stringsList = List.of("apple", "melon", "pinneapple", "mango", "lemon", "blueberry", "banana", "strawberry", "kiwi", "maracuya", "pitahaya", "aya", "aya", "aya", "aya", "aya", "aya", "aya", "aya", "aya", "aya", "aya", "aya", "aya", "aya");
         List<Integer> integersList = List.of(10, 15, 20, 25, 30, 27, 24, 21, 18, 15, 12, 9, 6, 3);
         List<People> peopleList = List.of(new People("Isan", 23, "M"),
                 new People("Eduardo", 25, "M"),
