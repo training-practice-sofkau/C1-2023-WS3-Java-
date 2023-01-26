@@ -44,7 +44,7 @@ public class SuppliesFunctional {
                 System.out.println(soldSupl(sales));
                 break;
             case "4":
-
+                System.out.println(saleYear(sales));
                 break;
             case "5":
 
@@ -68,7 +68,12 @@ public class SuppliesFunctional {
     }
 
     public static List<String> soldSupl(ArrayList<Sale> sales){
-        return sales.stream().flatMap(s -> s.getItems().stream()).map(Product::getName).distinct().collect(Collectors.toList());
+        return sales.stream().flatMap(s -> s.getItems().stream())
+                .map(Product::getName).distinct().collect(Collectors.toList());
+    }
+
+    public static Map<Integer, List<Sale>> saleYear(ArrayList<Sale> sales){
+        return sales.stream().collect(Collectors.groupingBy(x -> x.getSaleDate().getYear() + 1900));
     }
 //    public static OptionalInt lessSatisfactionNum(ArrayList<Sale> sales){
 //        return sales.stream().mapToInt(x -> x.getCustomer().getSatisfaction()).min();
