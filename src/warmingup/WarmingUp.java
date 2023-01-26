@@ -51,6 +51,10 @@ public class WarmingUp {
                 new People("Menganito", 5, "M"),
                 new People("Menganita", 5, "F")
         )));
+
+        //Ex6
+        System.out.println("Exercise 6:");
+        System.out.println(ex6ReverseStrings(List.of("Hi","Helloo", "world","world!", "how", "how are", "you", "doing?", "four", "D:")));
     }
 
     //Exercise 1
@@ -76,5 +80,24 @@ public class WarmingUp {
     //Exercise 5
     public static Map<Integer,List<People>> ex5FirstLetterMap(List<People> people){
         return people.stream().collect(Collectors.groupingBy(People::getAge));
+    }
+
+    //Exercise 6
+    public static List<String> ex6ReverseStrings(List<String> words){
+        return words.stream().filter(x -> x.length()<4).map(x -> {
+            String newString = "";
+            for (int i=0; i<x.length(); i++){
+                char ch = x.charAt(i);
+                newString= ch+newString;
+            }
+            return newString;
+        }).collect(Collectors.toList());
+
+                //for (int i=0; i<str.length(); i++)
+        //      {
+        //        ch= str.charAt(i); //extracts each character
+        //        nstr= ch+nstr; //adds each character in front of the existing string
+        //      }
+                //.collect(Collectors.groupingBy(s-> s.substring(0,1)));
     }
 }
