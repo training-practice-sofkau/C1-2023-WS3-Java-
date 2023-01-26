@@ -1,6 +1,7 @@
 package warmingup;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,14 +25,14 @@ public class WarmingUp {
         * Given a list of strings, use the Stream API to group the strings by their length, and return a map where the keys are the lengths and the values are lists of strings with that length.
         */
 
-        System.out.println("");
+        System.out.println();
         lengthMap(Data.words).forEach((key, values) -> System.out.println("" + key + values));
 
         /*
         * Given a list of strings, use the Stream API to group the strings by their first letter, and return a map where the keys are the first letters and the values are lists of strings that start with that letter.
         */
 
-        System.out.println("");
+        System.out.println();
         wordsGrouper(Data.words).forEach((key, values) -> System.out.println("" + key + values));
 
         /*
@@ -57,13 +58,24 @@ public class WarmingUp {
         /*
         * Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
         */
+
+        System.out.println();
+        peopleFilterSort(Data.people).forEach(p -> System.out.println(p.getAge() + " " + p.getName()));
+
+    }
+
+    public static List<People> peopleFilterSort(List<People> people) {
+        return people.stream()
+                .filter(p -> p.getAge() > 40)
+                .sorted(Comparator.comparingInt(People::getAge))
+                .collect(Collectors.toList());
     }
 
     public static List<String> reverseFilter(List<String> words){
         return words.stream()
                 .filter(s -> s.length() < 4)
                 .map(s -> {
-                    StringBuilder r = new StringBuilder(String.valueOf(s));
+                    StringBuilder r = new StringBuilder(s);
                     r.reverse();
                     return r.toString();
                 })
