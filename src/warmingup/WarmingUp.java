@@ -36,6 +36,7 @@ public class WarmingUp {
         System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
 
         //4
+        System.out.println(byFirstLetter(List.of("Diego","Daniel","Maria","Segio","Ivan","John","Jacob","Julian","Anna","Mariam")));
 
     }
 
@@ -52,6 +53,11 @@ public class WarmingUp {
     public static List<String> greaterThanFive(List<String> myStrings){
 
         return myStrings.stream().filter(s->s.length()>5).map(String::toUpperCase).collect(Collectors.toList());
+    }
+
+    public static Map<Character,List<String>> byFirstLetter(List<String> myStrings){
+
+        return myStrings.stream().collect(Collectors.groupingBy(s->s.charAt(0),Collectors.mapping(String::valueOf,Collectors.toList())));
     }
 
 }
