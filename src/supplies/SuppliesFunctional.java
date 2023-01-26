@@ -49,7 +49,7 @@ public class SuppliesFunctional {
                 gropByYear();
                 break;
             case "5":
-
+                getTags ();
                 break;
             default:
                 System.out.println("Invalid input. Try again.");
@@ -81,16 +81,32 @@ public class SuppliesFunctional {
                 .collect(Collectors.groupingBy(sale -> sale.getSaleDate().getYear()))
                 .entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> newValue, TreeMap::new));
         salesPerByYear.forEach((year, sale) -> {
-            System.out.println("-- " + year + 1900 + ":\n\n");
+            System.out.println("\n-- " + (year+1900) + ":\n\n");
             sale.forEach(sale1 -> System.out.println("-------> year: " + sale1.getSaleDate() + " " + sale1.getCustomer()));
         });
         return salesPerByYear;
     }
-    static List<Product> getSoldProducts (){
-        List<Product> soldProducts = sales.stream().flatMap(sale -> sale.getItems().stream()).collect(Collectors.toList());
+    static Set<String> getSoldProducts (){
+        HashSet<String> soldProducts = new HashSet<>(sales.stream().flatMap(sale -> sale.getItems().stream()).map(Product::getName).collect(Collectors.toSet()));
         System.out.println("\nThese are the sold products :\n");
-        soldProducts.forEach(product -> System.out.println("-- "+product.getName()));
+        System.out.println();
         return soldProducts;
+    }
+    static Map<String, Integer> getTags (){
+        Set<String> productNames = getSoldProducts();
+        HashMap<String,Integer>soldTags = new HashMap();
+        HashSet<String> existingTags = new HashSet<>(sales.stream().flatMap(sale -> sale.getItems().stream()).flatMap(product->product.getTags().stream()).collect(Collectors.toSet()));
+        existingTags.forEach(tag->soldTags.put(tag,0));
+        sales.stream().flatMap(sale -> sale.getItems().stream()).collect(Collectors.toMap(Product::getTags,product->product)).forEach((product,tags)->{
+            tags.getTags().forEach(tag -> {
+                if (soldTags.containsKey(tag)) {
+                    soldTags.
+                }
+            });
+
+
+        });
+        return null;
     }
 }
 
