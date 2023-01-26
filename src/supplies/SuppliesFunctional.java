@@ -79,10 +79,14 @@ public class SuppliesFunctional {
         TreeMap<Integer, List<Sale>> salesPerByYear = sales.stream()
                 .sorted(Comparator.comparingInt(person -> (person.getSaleDate().getYear())))
                 .collect(Collectors.groupingBy(sale -> sale.getSaleDate().getYear()))
-                .entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(oldValue,newValue)-> newValue,TreeMap::new));
-        salesPerByYear.forEach((year,sale) -> System.out.println("-- "+year+":\n\n"));
+                .entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> newValue, TreeMap::new));
+        salesPerByYear.forEach((year, sale) -> {
+            System.out.println("-- " + year + 1900 + ":\n\n");
+            sale.forEach(sale1 -> System.out.println("-------> year: " + sale1.getSaleDate() + " " + sale1.getCustomer()));
+        });
         return null;
     }
+
 }
 
 
