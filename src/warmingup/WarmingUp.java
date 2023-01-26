@@ -26,22 +26,44 @@ public class WarmingUp {
 */
         //1st
         List<Integer> intNumbers = List.of(1,2,5,2,6,8,3,12,34,6,7,34,56,22,4,6,7,2,12,31,23);
-        System.out.println("Sum of even filtered numbers squared: "+sumOfSquaredFilteredList(intNumbers));
+        //System.out.println("1ST TASK -- Sum of even filtered numbers squared: "+sumOfSquaredFilteredList(intNumbers));
+
+        //2nd
+        List<String> strings = List.of("jonathan", "daniel", "music", "drive", "keyboard", "mouse", "standing", "car", "bikers", "ball", "measurement");
+        //System.out.println("2ND TASK -- Filtered and capitalized strings: " + filterAndCapitalized(strings));
+
         //3rd
-        //System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+        //System.out.println("3RD TASK -- Group by length: "+lengthMap(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","dragon fruit")));
+
+        //4th
+        System.out.println("4TH TASK -- Map group by first letter"+ sameFirstLetter(strings));
     }
 
+    //method for the first task
     public static Integer sumOfSquaredFilteredList(List<Integer> numbers){
-        List<Integer> squared = new ArrayList<>();
-        numbers.stream()
-                .filter((x) -> x % 2 == 0)
-                .forEach((y)-> squared.add((int) Math.pow(y,2)));
-        System.out.println("List of even numbers squared: " + squared);
-        return squared.stream().mapToInt(Integer::intValue).sum();
+        return numbers.stream()
+                .filter(x -> x % 2 == 0)
+                .map(y->Math.pow(y,2))
+                .mapToInt(Double::intValue)
+                .sum();
     }
-    public static Map<Integer,List<String>> lengthMap(List<String> words){
-        //First I need to know the length of the words
-        return words.stream().collect(Collectors.groupingBy(String::length));
 
+    //method for the second task
+    public static List<String> filterAndCapitalized(List<String> strings){
+        return strings.stream()
+                .filter((x) -> x.length() > 5)
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+    }
+
+    //method for the third task
+    public static Map<Integer,List<String>> lengthMap(List<String> words){
+        return words.stream()
+                .collect(Collectors.groupingBy(String::length));
+    }
+
+    //method for the fourth task
+    public static Map<String,List<String>> sameFirstLetter(List<String> words){
+        return words.stream().collect(Collectors.groupingBy( x -> String.valueOf(x.charAt(0))));
     }
 }
