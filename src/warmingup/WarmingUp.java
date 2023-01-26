@@ -1,9 +1,6 @@
 package warmingup;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WarmingUp {
@@ -58,6 +55,22 @@ public class WarmingUp {
         //6
         lessThanFourAndReverse(List.of("sun","aloha","red","diego","screen","cartoon","figures","food","paint","muscle","kid")).forEach(System.out::println);
 
+        //
+        System.out.println(
+                peopleByOrderThan40(List.of(
+                new People("Diego",29,'M'),
+                new People("Marcela",44,'F'),
+                new People("Daniel",22,'M'),
+                new People("Andrea",41,'F'),
+                new People("Mark",22,'M'),
+                new People("Laura",29,'F'),
+                new People("Cletus",55,'M'),
+                new People("Robert",30,'M'),
+                new People("Demi",55,'F'),
+                new People("Jennifer",29,'F')
+
+        )));
+
     }
 
     public static Map<Integer,List<String>> lengthMap(List<String> words){
@@ -89,6 +102,10 @@ public class WarmingUp {
         return myStrings.stream().filter(s->s.length()<4).map(s-> new StringBuilder().append(s).reverse().toString() ).collect(Collectors.toList());
     }
 
+    public static Map<Integer,List<People>> peopleByOrderThan40(List<People> myPeople){
+
+        return myPeople.stream().filter(p->p.getAge()>40).collect(Collectors.groupingBy(People::getAge,TreeMap::new, Collectors.toList())).descendingMap();
+    }
 
 
 }
