@@ -124,8 +124,14 @@ public class WarmingUp {
                 .collect(Collectors.groupingBy(People::getAge));
     }
 
-    private static boolean exercise6() {
-        return false;
+    private static List<String>  exercise6() {
+
+        List<String> strings = List.of("short", "less", "A bigger one", "A really big one", "Rotator", "Anna", "Civic", "Toe", "pay", "Due");
+
+        return strings.stream()
+                .filter(s -> s.length() >= 4)
+                .map(s -> new StringBuilder(s).reverse().toString())
+                .collect(Collectors.toList());
     }
 
     private static boolean exercise7() {
