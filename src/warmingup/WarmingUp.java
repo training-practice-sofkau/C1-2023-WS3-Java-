@@ -55,6 +55,9 @@ public class WarmingUp {
                 ))
         );
 
+        //6
+        lessThanFourAndReverse(List.of("sun","aloha","red","diego","screen","cartoon","figures","food","paint","muscle","kid")).forEach(System.out::println);
+
     }
 
     public static Map<Integer,List<String>> lengthMap(List<String> words){
@@ -81,5 +84,11 @@ public class WarmingUp {
 
         return myPeople.stream().collect(Collectors.groupingBy(People::getAge));
     }
+
+    public static List<String> lessThanFourAndReverse(List<String> myStrings){
+        return myStrings.stream().filter(s->s.length()<4).map(s-> new StringBuilder().append(s).reverse().toString() ).collect(Collectors.toList());
+    }
+
+
 
 }
