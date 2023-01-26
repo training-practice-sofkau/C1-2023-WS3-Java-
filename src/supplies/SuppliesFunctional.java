@@ -89,20 +89,20 @@ public class SuppliesFunctional {
         return salesNY.stream().
                 collect(Collectors.
                         groupingBy(sale -> sale.getItems().stream()
-                                .map(item -> item.getTags().stream().collect(Collectors.toList())),
+                                .map(item -> item.getTags()))).collect(Collectors.toList())),
                                 Collectors.counting()));
                                 //Collectors.mapping(Sale::getSaleDate, Collectors.toList())));
 
         //return null;
     };
+
 */
 
 
-
     //Issues with the keys
-    public static Map<Integer, List<Date>> ex5SalesPerYear (List<Sale> salesNY) {
-        Map<Integer, List<Date>> temp = salesNY.stream().collect(Collectors.groupingBy(sale -> sale.getSaleDate().getYear(), Collectors.mapping(Sale::getSaleDate, Collectors.toList())));
-        return temp;
+    public static TreeMap<Integer, List<Date>> ex5SalesPerYear (List<Sale> salesNY) {
+        Map<Integer, List<Date>> temp = salesNY.stream().collect(Collectors.groupingBy(sale -> sale.getSaleDate().getYear()+1900, TreeMap::new, Collectors.mapping(Sale::getSaleDate, Collectors.toList())));
+        return (TreeMap)temp;
         //return salesNY.stream().collect(Collectors.groupingBy(sale -> sale.getSaleDate().getYear()));
     }
 
