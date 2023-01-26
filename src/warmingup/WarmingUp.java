@@ -22,24 +22,22 @@ public class WarmingUp {
         persons.add(new People("Brian", 25, "M"));
         persons.add(new People("Natalia", 25, "F"));
         persons.add(new People("Felipe", 23, "M"));
-        persons.add(new People("John", 25, "M"));
+        persons.add(new People("John", 70, "M"));
         persons.add(new People("Jeymmy", 35, "F"));
         persons.add(new People("Dante", 10, "M"));
         persons.add(new People("Franky", 15, "M"));
         persons.add(new People("Mercedes", 65, "F"));
         persons.add(new People("Maria", 51, "F"));
-        persons.add(new People("Liliana", 33, "F"));
+        persons.add(new People("Liliana", 90, "F"));
 
         System.out.println(ageMap(persons));
 
 //      Given a list of strings, use the Stream API to filter out strings that have a length less than 4, reverse the remaining strings, and return a new list of the modified strings.
         System.out.println(lengtLess(List.of("app","melon","pin","mango","lemon","blueberry","banana","strawberry","kiw","mar","pitahaya")));
 
-
-
-//         Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
+//      Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
+        System.out.println(olderAgeMap(persons));
     }
-
 
     public static Integer sumEvenNum(List<Integer> integers) {
        return integers.stream().filter(n -> n % 2 == 0).map(i -> i * i).reduce(0, Integer::sum);
@@ -55,11 +53,15 @@ public class WarmingUp {
         return words.stream().collect(Collectors.groupingBy(String::length));
     }
 
-    public static Map<Integer, List<String>> ageMap(ArrayList<People> people){
-        return  people.stream().collect(Collectors.groupingBy(People::getAge, Collectors.mapping(People::getName, Collectors.toList())));
+    public static Map<Integer, List<People>> ageMap(ArrayList<People> people){
+        return  people.stream().collect(Collectors.groupingBy(People::getAge));
     }
 
     public static List<StringBuilder> lengtLess(List<String> words){
         return words.stream().filter(w -> w.length() < 4).map(w -> new StringBuilder(w).reverse()).collect(Collectors.toList());
+    }
+
+    public static List<People> olderAgeMap(ArrayList<People> people){
+        return  people.stream().filter(p -> p.getAge() > 40).sorted(Comparator.comparingInt(People::getAge).reversed()).collect(Collectors.toList());
     }
 }

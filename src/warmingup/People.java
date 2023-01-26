@@ -13,11 +13,11 @@ public class People {
         this.gender = gender;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public int getAge() {
         return age;
+    }
+    @Override
+    public String toString() {
+        return "{Name: " + name + ", age: " + age + ", gender: " + gender + "}";
     }
 }
