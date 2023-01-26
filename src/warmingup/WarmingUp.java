@@ -1,14 +1,43 @@
 package warmingup;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+
+import static java.lang.Math.pow;
+
 
 public class WarmingUp {
     public static void main(String[] args) {
+
         System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+
+
+
+
+        // First exercise
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Optional<Integer> total = numbers.stream().filter(i -> i%2 != 0).map(a -> a*a).reduce((a, b) -> a + b);
+        System.out.println("The total is: " + total.get());
+
+        // Second exercise
+        List<String> words = Arrays.asList("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya");
+        List<String> words2 = words.stream().filter(i ->i.length() < 5).collect(Collectors.toList());
+        words2.replaceAll(String::toUpperCase);
+        System.out.println("Uppercase words with length under 5: " + words2);
+
+        // Fifth exercise
+        System.out.println(personAge(List.of((new People("John", 15, "M")), (new People("Maria", 15, "F")), (new People("Albert", 20, "M")), (new People("Melody", 20, "F")), (new People("Ricky", 30, "M")), (new People("Leena", 30, "F")), (new People("Joseph", 60, "M")))));
+
+        // Fourth exercise
+        System.out.println(firstLetterMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+
+        // Sixth exercise
+        List<String> ls = Arrays.asList("cat","dog","pinneapple","man","moon","blue","ban","bar","kiwi","stay","pitahaya");
+        List<String> ls2 = ls.stream().filter(i ->i.length() < 4).collect(Collectors.toList());
+        Collections.reverse(ls2);
+        System.out.println("Reversed Strings with length under 4: " + ls2);
+
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
 
@@ -31,4 +60,26 @@ public class WarmingUp {
         return words.stream().collect(Collectors.groupingBy(String::length));
 
     }
+    public static Map<Character,List<String>> firstLetterMap(List<String> words){
+        //First I need to know the first letter of the words
+        return words.stream().collect(Collectors.groupingBy(s -> s.charAt(0)));
+    }
+
+    public  static Map<Integer, List<People>> personAge (List<People> persons) {
+        return persons.stream().collect(Collectors.groupingBy(People::getAge));
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
