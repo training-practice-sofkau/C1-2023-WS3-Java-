@@ -26,8 +26,12 @@ public class WarmingUp {
         words2.replaceAll(String::toUpperCase);
         System.out.println("Uppercase words with length under 5: " + words2);
 
-        // Third exercise
-        System.out.println(firstLetterMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+        // Fourth exercise
+        System.out.println(personAge(List.of((new People("John", 15, "M")), (new People("Maria", 15, "F")), (new People("Albert", 20, "M")), (new People("Melody", 20, "F")), (new People("Ricky", 30, "M")), (new People("Leena", 30, "F")), (new People("Joseph", 60, "M")))));
+
+        // Fifth exercise
+
+
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
 
@@ -53,9 +57,10 @@ public class WarmingUp {
     public static Map<Character,List<String>> firstLetterMap(List<String> words){
         //First I need to know the first letter of the words
         return words.stream().collect(Collectors.groupingBy(s -> s.charAt(0)));
+    }
 
-
-
+    public  static Map<Integer, List<People>> personAge (List<People> persons) {
+        return persons.stream().collect(Collectors.groupingBy(s -> s.getAge()));
     }
 }
 
