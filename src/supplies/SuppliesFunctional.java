@@ -43,7 +43,7 @@ public class SuppliesFunctional {
                 System.out.println(customersLowestSatisfaction(sales));
                 break;
             case "3":
-
+                System.out.println(productsSold(sales));
                 break;
             case "4":
 
@@ -70,6 +70,11 @@ public class SuppliesFunctional {
         int lowest = sales.stream().min(Comparator.comparing(s -> s.getCustomer().getSatisfaction())).get().getCustomer().getSatisfaction();
 
         return sales.stream().map(Sale::getCustomer).filter(customer -> customer.getSatisfaction()==lowest).collect(Collectors.toList());
+    }
+
+    public static Set<String> productsSold(ArrayList<Sale> sales){
+
+        return sales.stream().flatMap(s -> s.getItems().stream()).map(Product::getName).collect(Collectors.toSet());
     }
 
 
