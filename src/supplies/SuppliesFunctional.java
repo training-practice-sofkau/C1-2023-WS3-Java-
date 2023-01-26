@@ -2,11 +2,9 @@ package supplies;
 
 
 import supplies.sales.Database;
-import supplies.sales.Product;
 import supplies.sales.Sale;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class SuppliesFunctional {
