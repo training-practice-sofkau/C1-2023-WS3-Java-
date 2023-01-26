@@ -30,8 +30,22 @@ public class WarmingUp {
 
         // Solving exercise 2:
         System.out.println(exercise2());
-    }
 
+        // Solving exercise 3:
+        System.out.println(exercise3());
+
+        // Solving exercise 4:
+        System.out.println(exercise4());
+
+        // Solving exercise 5:
+        System.out.println(exercise5());
+
+        // Solving exercise 6:
+        System.out.println(exercise6());
+
+        // Solving exercise 7:
+        System.out.println(exercise7());
+    }
     public static int exercise1() {
 
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -44,8 +58,34 @@ public class WarmingUp {
 
     public static List<String> exercise2(){
 
-        return null;
+        List<String> strings = List.of("short", "less", "A bigger one", "A really big one", "The biggest one");
+
+        return  strings.stream()
+                .filter(s -> s.length() <= 5)
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
     }
+
+    private static boolean exercise3() {
+        return false;
+    }
+
+    private static boolean exercise4() {
+        return false;
+    }
+
+    private static boolean exercise5() {
+        return false;
+    }
+
+    private static boolean exercise6() {
+        return false;
+    }
+
+    private static boolean exercise7() {
+        return false;
+    }
+
 }
 
 
