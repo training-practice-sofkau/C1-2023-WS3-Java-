@@ -95,16 +95,14 @@ public class SuppliesFunctional {
     static Map<String, Integer> getTags (){
         Set<String> productNames = getSoldProducts();
         HashMap<String,Integer>soldTags = new HashMap();
-        HashSet<String> existingTags = new HashSet<>(sales.stream().flatMap(sale -> sale.getItems().stream()).flatMap(product->product.getTags().stream()).collect(Collectors.toSet()));
-        existingTags.forEach(tag->soldTags.put(tag,0));
-        sales.stream().flatMap(sale -> sale.getItems().stream()).collect(Collectors.toMap(Product::getTags,product->product)).forEach((product,tags)->{
+        sales.stream().flatMap(sale -> sale.getItems().stream()).flatMap(product->product.getTags().stream()).collect(Collectors.toSet()).forEach(tag->soldTags.put(tag,0));
+        sales.stream().flatMap(sale -> sale.getItems().stream()).collect(Collectors.toMap(Product::getName,product->product)).forEach((product,tags)->{
             tags.getTags().forEach(tag -> {
                 if (soldTags.containsKey(tag)) {
-                    soldTags.
+                    Integer i = soldTags.get(tag) +1;
+                    soldTags.replace(tag,i);
                 }
             });
-
-
         });
         return null;
     }
