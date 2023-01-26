@@ -1,7 +1,6 @@
 package warmingup;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -11,7 +10,11 @@ public class WarmingUp {
         System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
+        */
 
+        System.out.println("Sum of the square of odd numbers in list numbers: " + sumSquares(Data.numbers));
+
+        /*
         * Given a list of strings, use the Stream API to filter out strings that have a length greater than 5, convert the remaining strings to uppercase, and return a new list of the modified strings.
 
         * Given a list of strings, use the Stream API to group the strings by their length, and return a map where the keys are the lengths and the values are lists of strings with that length.
@@ -24,6 +27,21 @@ public class WarmingUp {
 
         * Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
 */
+    }
+
+    public static int sumSquares(List<Integer> numbers) {
+        List<Integer> powNumbers = new ArrayList<Integer>();
+        Integer result = 0;
+
+        numbers.stream()
+                .filter(n -> n % 2 != 0)
+                .forEach(n -> powNumbers.add((int) Math.pow(n, 2)));
+
+        for (Integer n : powNumbers) {
+            result += n;
+        }
+
+        return result;
     }
 
     public static Map<Integer,List<String>> lengthMap(List<String> words){
