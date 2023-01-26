@@ -57,7 +57,7 @@ public class SuppliesFunctional {
                 default:
                     System.out.println("Invalid input. Try again.");
             }
-        } while(!op.equalsIgnoreCase("6"));
+        } while(!op.equalsIgnoreCase("0"));
 
 
     }
