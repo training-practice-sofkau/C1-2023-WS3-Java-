@@ -49,7 +49,7 @@ public class SuppliesFunctional {
 
                 break;
             case "5":
-
+                System.out.println(salesPerYear(sales));
                 break;
             default:
                 System.out.println("Invalid input. Try again.");
@@ -75,6 +75,12 @@ public class SuppliesFunctional {
     public static Set<String> productsSold(ArrayList<Sale> sales){
 
         return sales.stream().flatMap(s -> s.getItems().stream()).map(Product::getName).collect(Collectors.toSet());
+    }
+
+    public static Map<String,List<Sale>> salesPerYear(ArrayList<Sale> sales){
+
+
+        return sales.stream().collect(Collectors.groupingBy(s->"\n\n"+(s.getSaleDate().getYear()+1900)+"\n\n",TreeMap::new, Collectors.toList())).descendingMap();
     }
 
 
