@@ -41,13 +41,13 @@ public class WarmingUp {
         List<People> people = List.of(people1, people2, people3, people4, people5, people6, people7, people8, people9, people10, people11, people12);
 
         //1st
-        System.out.println("1ST TASK -- Sum of even filtered numbers squared: "+sumOfSquaredFilteredList(intNumbers));
+        System.out.println("1ST TASK -- Sum of even filtered numbers squared: " + sumOfSquaredFilteredList(intNumbers));
 
         //2nd
         System.out.println("2ND TASK -- Filtered and capitalized strings: " + filterAndCapitalized(strings));
 
         //3rd
-        System.out.println("3RD TASK -- Group by length: "+lengthMap(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","dragon fruit")));
+        System.out.println("3RD TASK -- Group by length: " + lengthMap(List.of("apple", "melon", "pineapple", "mango", "lemon", "blueberry", "banana", "strawberry", "kiwi", "maracuya", "dragon fruit")));
 
         //4th
         System.out.println("4TH TASK -- Map group by first letter" + sameFirstLetter(strings));
