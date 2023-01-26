@@ -12,10 +12,10 @@ public class WarmingUp {
         System.out.println(upCaseLength(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
 
 //      Given a list of strings, use the Stream API to group the strings by their length, and return a map where the keys are the lengths and the values are lists of strings with that length.
-        System.out.println(firstLeterMap(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+        System.out.println(lengthMap(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
 
 //      Given a list of strings, use the Stream API to group the strings by their first letter, and return a map where the keys are the first letters and the values are lists of strings that start with that letter.
-        System.out.println(lengthMap(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+        System.out.println(firstLeterMap(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
 
 //      Given a list of people, use the Stream API to group the people by their age, and return a map where the keys are the ages and the values are lists of people with that age.
         ArrayList<People> persons = new ArrayList<>();
@@ -32,13 +32,12 @@ public class WarmingUp {
 
         System.out.println(ageMap(persons));
 
-        /* TO DO:
+//      Given a list of strings, use the Stream API to filter out strings that have a length less than 4, reverse the remaining strings, and return a new list of the modified strings.
+        System.out.println(lengtLess(List.of("app","melon","pin","mango","lemon","blueberry","banana","strawberry","kiw","mar","pitahaya")));
 
 
-        * Given a list of strings, use the Stream API to filter out strings that have a length less than 4, reverse the remaining strings, and return a new list of the modified strings.
 
-        * Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
-*/
+//         Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
     }
 
 
@@ -58,5 +57,9 @@ public class WarmingUp {
 
     public static Map<Integer, List<String>> ageMap(ArrayList<People> people){
         return  people.stream().collect(Collectors.groupingBy(People::getAge, Collectors.mapping(People::getName, Collectors.toList())));
+    }
+
+    public static List<StringBuilder> lengtLess(List<String> words){
+        return words.stream().filter(w -> w.length() < 4).map(w -> new StringBuilder(w).reverse()).collect(Collectors.toList());
     }
 }
