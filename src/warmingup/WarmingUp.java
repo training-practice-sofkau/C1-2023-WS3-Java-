@@ -66,7 +66,7 @@ public class WarmingUp {
     }
 
     public  static Map<Integer, List<People>> personAge (List<People> persons) {
-        return persons.stream().collect(Collectors.groupingBy(s -> s.getAge()));
+        return persons.stream().collect(Collectors.groupingBy(People::getAge));
     }
 
 }
