@@ -15,8 +15,21 @@ public class SuppliesFunctional {
         //loadMenu();
         //sales.forEach(System.out::println);
 
-        loadNySales();
 
+
+    }
+
+    public static void loadLowerScore(){
+        Integer minScore = sales.stream()
+                .mapToInt(n -> n.getCustomer().getSatisfaction())
+                .min().
+                getAsInt();
+
+        sales.stream()
+                .filter(s -> s.getCustomer().getSatisfaction() == minScore)
+                .sorted((s1, s2) -> String.CASE_INSENSITIVE_ORDER.compare(s1.getCustomer().getEmail(), s2.getCustomer().getEmail()))
+                .collect(Collectors.toList())
+                .forEach(s -> System.out.println(s.getCustomer().getEmail() + " " + s.getCustomer().getSatisfaction()));
     }
 
     public static void loadNySales() {
@@ -33,10 +46,10 @@ public class SuppliesFunctional {
         String op=sc.nextLine();
         switch(op){
             case "1":
-
+                loadNySales();
                 break;
             case "2":
-
+                loadLowerScore();
                 break;
             case "3":
 
