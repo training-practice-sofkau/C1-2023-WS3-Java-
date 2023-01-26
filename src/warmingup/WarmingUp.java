@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import static java.lang.Math.pow;
 
+
 public class WarmingUp {
     public static void main(String[] args) {
 
@@ -20,7 +21,12 @@ public class WarmingUp {
         System.out.println("The total is: " + total.get());
 
         // Second exercise
+        List<String> words = Arrays.asList("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya");
+        List<String> words2 = words.stream().filter(i ->i.length() < 5).collect(Collectors.toList());
+        words2.replaceAll(String::toUpperCase);
+        System.out.println("Uppercase words with length under 5: " + words2);
 
+        // Third exercise
 
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
@@ -44,6 +50,7 @@ public class WarmingUp {
         return words.stream().collect(Collectors.groupingBy(String::length));
 
     }
+
 
 
 
