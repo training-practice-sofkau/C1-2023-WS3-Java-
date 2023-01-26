@@ -23,7 +23,7 @@ public class Database {
         // I'm getting the table/collection that i want to use
         MongoCollection<Document> collection = mongoClient.getDatabase("sample_supplies").getCollection("sales");
         //I'm saving all the data from the previous line into an ArrayList of Document
-        ArrayList<Document> data= collection.find().into(new ArrayList<>());
+        ArrayList<Document> data= collection.find().limit(20).into(new ArrayList<>());
 
         return fillData(data);
     }
