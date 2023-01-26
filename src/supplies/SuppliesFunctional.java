@@ -43,7 +43,7 @@ public class SuppliesFunctional {
                 topLessSatisfied();
                 break;
             case "3":
-
+                getSoldProducts ();
                 break;
             case "4":
                 gropByYear();
@@ -84,9 +84,14 @@ public class SuppliesFunctional {
             System.out.println("-- " + year + 1900 + ":\n\n");
             sale.forEach(sale1 -> System.out.println("-------> year: " + sale1.getSaleDate() + " " + sale1.getCustomer()));
         });
-        return null;
+        return salesPerByYear;
     }
-
+    static List<Product> getSoldProducts (){
+        List<Product> soldProducts = sales.stream().flatMap(sale -> sale.getItems().stream()).collect(Collectors.toList());
+        System.out.println("\nThese are the sold products :\n");
+        soldProducts.forEach(product -> System.out.println("-- "+product.getName()));
+        return soldProducts;
+    }
 }
 
 
