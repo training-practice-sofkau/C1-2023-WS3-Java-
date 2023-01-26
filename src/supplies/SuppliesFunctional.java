@@ -5,6 +5,7 @@ import supplies.sales.Customer;
 import supplies.sales.Database;
 import supplies.sales.Product;
 import supplies.sales.Sale;
+import warmingup.People;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,27 +34,31 @@ public class SuppliesFunctional {
     public static void loadMenu(){
         Scanner sc = new Scanner(System.in);
         menu();
-        System.out.print("Type option: ");
-        String op=sc.nextLine();
-        switch(op){
-            case "1":
-                System.out.println(salesNyAndCoupon(sales));
-                break;
-            case "2":
-                System.out.println(customersLowestSatisfaction(sales));
-                break;
-            case "3":
-                System.out.println(productsSold(sales));
-                break;
-            case "4":
+        String op;
+        do{
+            System.out.print("Type option: ");
+            op=sc.nextLine();
+            switch(op){
+                case "1":
+                    System.out.println(salesNyAndCoupon(sales));
+                    break;
+                case "2":
+                    System.out.println(customersLowestSatisfaction(sales));
+                    break;
+                case "3":
+                    System.out.println(productsSold(sales));
+                    break;
+                case "4":
+                    System.out.println(salesPerYear(sales));
+                    break;
+                case "5":
+                    System.out.println(productsPerTag(sales));
+                    break;
+                default:
+                    System.out.println("Invalid input. Try again.");
+            }
+        } while(!op.equalsIgnoreCase("6"));
 
-                break;
-            case "5":
-                System.out.println(salesPerYear(sales));
-                break;
-            default:
-                System.out.println("Invalid input. Try again.");
-        }
 
     }
 
@@ -79,10 +84,13 @@ public class SuppliesFunctional {
 
     public static Map<String,List<Sale>> salesPerYear(ArrayList<Sale> sales){
 
-
         return sales.stream().collect(Collectors.groupingBy(s->"\n\n"+(s.getSaleDate().getYear()+1900)+"\n\n",TreeMap::new, Collectors.toList())).descendingMap();
     }
 
+    public static Map<String,Long> productsPerTag(ArrayList<Sale> sales){
+
+        return sales.stream().flatMap(s->s.getItems().stream()).distinct().collect(Collectors.toList()).stream().flatMap(p->p.getTags().stream()).collect(Collectors.groupingBy(String::valueOf,Collectors.counting()));
+    }
 
 
 
