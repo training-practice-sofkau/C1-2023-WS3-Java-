@@ -79,7 +79,7 @@ public class SuppliesFunctional {
 
     public static Set<String> productsSold(ArrayList<Sale> sales){
 
-        return sales.stream().flatMap(s -> s.getItems().stream()).map(Product::getName).collect(Collectors.toSet());
+        return sales.stream().flatMap(s -> s.getItems().stream()).map(Product::getName).sorted().collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public static Map<String,List<Sale>> salesPerYear(ArrayList<Sale> sales){
@@ -91,8 +91,6 @@ public class SuppliesFunctional {
 
         return sales.stream().flatMap(s->s.getItems().stream()).distinct().collect(Collectors.toList()).stream().flatMap(p->p.getTags().stream()).collect(Collectors.groupingBy(String::valueOf,Collectors.counting()));
     }
-
-
 
 
 }
