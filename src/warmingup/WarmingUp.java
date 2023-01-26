@@ -38,6 +38,23 @@ public class WarmingUp {
         //4
         System.out.println(byFirstLetter(List.of("Diego","Daniel","Maria","Segio","Ivan","John","Jacob","Julian","Anna","Mariam")));
 
+        //5
+        System.out.println(
+                peopleByAge(List.of(
+                        new People("Diego",29,'M'),
+                        new People("Marcela",30,'F'),
+                        new People("Daniel",22,'M'),
+                        new People("Andrea",18,'F'),
+                        new People("Mark",22,'M'),
+                        new People("Laura",29,'F'),
+                        new People("Cletus",55,'M'),
+                        new People("Robert",30,'M'),
+                        new People("Demi",55,'F'),
+                        new People("Jennifer",29,'F')
+
+                ))
+        );
+
     }
 
     public static Map<Integer,List<String>> lengthMap(List<String> words){
@@ -58,6 +75,11 @@ public class WarmingUp {
     public static Map<Character,List<String>> byFirstLetter(List<String> myStrings){
 
         return myStrings.stream().collect(Collectors.groupingBy(s->s.charAt(0),Collectors.mapping(String::valueOf,Collectors.toList())));
+    }
+
+    public static Map<Integer,List<People>> peopleByAge(List<People> myPeople){
+
+        return myPeople.stream().collect(Collectors.groupingBy(People::getAge));
     }
 
 }
