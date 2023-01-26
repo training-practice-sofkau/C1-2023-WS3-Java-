@@ -5,6 +5,8 @@ import supplies.sales.Database;
 import supplies.sales.Product;
 import supplies.sales.Sale;
 
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,8 +16,15 @@ public class SuppliesFunctional {
     public static void main(String[] args) {
         //loadMenu();
         //sales.forEach(System.out::println);
+        
 
+    }
 
+    public static void loadSalesPerYear(){
+        sales.stream()
+                .collect(Collectors.groupingBy(s -> "\n\n"+(s.getSaleDate().getYear()+1900)+"\n\n",TreeMap::new, Collectors.toList()))
+                .descendingMap()
+                .forEach((k, values) -> System.out.println(k + ": " + values));
 
     }
 
@@ -55,7 +64,7 @@ public class SuppliesFunctional {
 
                 break;
             case "4":
-
+                loadSalesPerYear();
                 break;
             case "5":
 
