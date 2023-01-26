@@ -55,6 +55,21 @@ public class WarmingUp {
         //Ex6
         System.out.println("Exercise 6:");
         System.out.println(ex6ReverseStrings(List.of("Hi","Helloo", "world","world!", "how", "how are", "you", "doing?", "four", "D:")));
+
+        //Ex7
+        System.out.println("Exercise 7:");
+        System.out.println(ex7SortingPeople(List.of(
+                new People("Fulano", 45, "M"),
+                new People("Sutano", 60, "M"),
+                new People("Fulanito", 15, "M"),
+                new People("Sutanito", 12, "M"),
+                new People("Fulana", 60, "F"),
+                new People("Sutana", 45, "F"),
+                new People("Fulanita", 12, "F"),
+                new People("Sutanita", 15, "F"),
+                new People("Menganito", 5, "M"),
+                new People("Menganita", 5, "F")
+        )));
     }
 
     //Exercise 1
@@ -92,12 +107,13 @@ public class WarmingUp {
             }
             return newString;
         }).collect(Collectors.toList());
+    }
 
-                //for (int i=0; i<str.length(); i++)
-        //      {
-        //        ch= str.charAt(i); //extracts each character
-        //        nstr= ch+nstr; //adds each character in front of the existing string
-        //      }
-                //.collect(Collectors.groupingBy(s-> s.substring(0,1)));
+    //Exercise 7
+    public static List<People> ex7SortingPeople(List<People> people){
+        return people.stream().
+                filter(person -> person.getAge()>40).
+                sorted(Comparator.comparing(People::getName)).
+                collect(Collectors.toList());
     }
 }
