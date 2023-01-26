@@ -1,8 +1,8 @@
 package supplies;
 
 
+import supplies.sales.Customer;
 import supplies.sales.Database;
-import supplies.sales.Product;
 import supplies.sales.Sale;
 
 import java.util.*;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
-        //loadMenu();
+        sales.forEach(System.out::println);
         loadMenu();
     }
 
@@ -37,7 +37,7 @@ public class SuppliesFunctional {
                 System.out.println(cuponNy(sales));
                 break;
             case "2":
-
+                System.out.println(lessSatisfaction(sales));
                 break;
             case "3":
 
@@ -55,10 +55,19 @@ public class SuppliesFunctional {
     }
 
 
-public static Map<String, List<Sale>> cuponNy(ArrayList<Sale> sales){
-    return sales.stream().filter(s -> Objects.equals(s.getLocation(), "New York"))
-            .collect(Collectors.groupingBy(x -> x.getCouponUsed() ? "Use" : "No use"));
-}
+    public static Map<String, List<Sale>> cuponNy(ArrayList<Sale> sales){
+        return sales.stream().filter(s -> Objects.equals(s.getLocation(), "New York"))
+                .collect(Collectors.groupingBy(x -> x.getCouponUsed() ? "Use" : "No use"));
+    }
+
+    public static List<Customer> lessSatisfaction(ArrayList<Sale> sales){
+        return sales.stream().map(Sale::getCustomer)
+                .filter(customer -> customer.getSatisfaction().equals(1))
+                .sorted(Comparator.comparing(Customer::getEmail)).collect(Collectors.toList());
+    }
+//    public static OptionalInt lessSatisfactionNum(ArrayList<Sale> sales){
+//        return sales.stream().mapToInt(x -> x.getCustomer().getSatisfaction()).min();
+//    }
 
 
 }
