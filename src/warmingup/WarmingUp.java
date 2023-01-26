@@ -1,13 +1,12 @@
 package warmingup;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WarmingUp {
     public static void main(String[] args) {
+        System.out.println(sumEvenNum(List.of(1, 2, 3, 4, 10, 55 , 88, 77, 44, 11, 466, 52, 99)));
+
         System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
@@ -26,6 +25,11 @@ public class WarmingUp {
 */
     }
 
+
+    public static Integer sumEvenNum(List<Integer> integers) {
+       return integers.stream().filter(n -> n % 2 == 0).map(i -> i * i).reduce(0, Integer::sum);
+
+    }
     public static Map<Integer,List<String>> lengthMap(List<String> words){
         //First I need to know the length of the words
         return words.stream().collect(Collectors.groupingBy(String::length));
