@@ -72,7 +72,7 @@ public class SuppliesFunctional {
                     break;
                 case "5":
                     System.out.println("Sales per year: " + sales.stream()
-                            .collect(Collectors.groupingBy(s -> s.getSaleDate().getYear()+1900,Collectors.mapping(Sale::getLocation,Collectors.toList()))));
+                            .collect(Collectors.groupingBy(s -> s.getSaleDate().getYear()+1900,Collectors.mapping(Sale::getCustomer,Collectors.toList()))));
                     break;
                 default:
                     System.out.println("Invalid input. Try again.");
