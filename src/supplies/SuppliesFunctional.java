@@ -12,8 +12,9 @@ import java.util.stream.Collectors;
 public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
-        //loadMenu();
-        sales.forEach(System.out::println);
+
+        loadMenu();
+        //sales.forEach(System.out::println);
 
     }
 
@@ -35,7 +36,7 @@ public class SuppliesFunctional {
         String op=sc.nextLine();
         switch(op){
             case "1":
-
+                System.out.println(salesNyAndCoupon(sales));
                 break;
             case "2":
 
@@ -53,6 +54,14 @@ public class SuppliesFunctional {
                 System.out.println("Invalid input. Try again.");
         }
 
+    }
+
+    public static Map<String,List<Sale>> salesNyAndCoupon (ArrayList<Sale> sales){
+
+        return sales.stream().filter(s-> Objects.equals(s.getLocation(), "New York")).collect(Collectors.groupingBy(s-> {
+            if(s.getCouponUsed()) return "\nUse\n";
+            return "\nNo Use\n";
+        },Collectors.toList()));
     }
 
 

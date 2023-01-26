@@ -55,7 +55,7 @@ public class WarmingUp {
         //6
         lessThanFourAndReverse(List.of("sun","aloha","red","diego","screen","cartoon","figures","food","paint","muscle","kid")).forEach(System.out::println);
 
-        //
+        //7
         System.out.println(
                 peopleByOrderThan40(List.of(
                 new People("Diego",29,'M'),
