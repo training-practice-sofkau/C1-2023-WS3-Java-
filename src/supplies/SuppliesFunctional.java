@@ -1,6 +1,7 @@
 package supplies;
 
 
+import supplies.sales.Customer;
 import supplies.sales.Database;
 import supplies.sales.Product;
 import supplies.sales.Sale;
@@ -39,7 +40,7 @@ public class SuppliesFunctional {
                 System.out.println(salesNyAndCoupon(sales));
                 break;
             case "2":
-
+                System.out.println(customersLowestSatisfaction(sales));
                 break;
             case "3":
 
@@ -63,6 +64,14 @@ public class SuppliesFunctional {
             return "\nNo Use\n";
         },Collectors.toList()));
     }
+
+    public static List<Customer> customersLowestSatisfaction (ArrayList<Sale> sales){
+
+        int lowest = sales.stream().min(Comparator.comparing(s -> s.getCustomer().getSatisfaction())).get().getCustomer().getSatisfaction();
+
+        return sales.stream().map(Sale::getCustomer).filter(customer -> customer.getSatisfaction()==lowest).collect(Collectors.toList());
+    }
+
 
 
 
