@@ -2,6 +2,7 @@ package supplies;
 
 
 import supplies.sales.Database;
+import supplies.sales.Product;
 import supplies.sales.Sale;
 
 import java.util.*;
@@ -39,10 +40,11 @@ public class SuppliesFunctional {
                 break;
             case "2":
                 List<Sale> result2 = case2();
-                System.out.println(result2);
+                result2.forEach(System.out::println);
                 break;
             case "3":
-                case3();
+                List<String> result3 = case3();
+                result3.forEach(System.out::println);
                 break;
             case "4":
                 Map<Date, List<Sale>> result4 = case4();
@@ -50,6 +52,8 @@ public class SuppliesFunctional {
                 break;
             case "5":
                 case5();
+                break;
+            case "6":
                 break;
             default:
                 System.out.println("Invalid input. Try again.");
@@ -71,7 +75,14 @@ public class SuppliesFunctional {
                 .collect(Collectors.toList());
     }
 
-    public static void case3() {
+    public static List<String> case3() {
+
+        return sales.stream()
+                .flatMap(sale -> sale.getItems().stream())
+                .map(Product::getName)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public static Map<Date, List<Sale> > case4() {
@@ -81,7 +92,6 @@ public class SuppliesFunctional {
     }
 
     public static void case5() {
-
 
     }
 }
