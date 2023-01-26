@@ -27,7 +27,7 @@ public class WarmingUp {
         System.out.println("Uppercase words with length under 5: " + words2);
 
         // Third exercise
-
+        System.out.println(firstLetterMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
         /* TO DO:
         * Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
 
@@ -50,12 +50,19 @@ public class WarmingUp {
         return words.stream().collect(Collectors.groupingBy(String::length));
 
     }
-
-
+    public static Map<Character,List<String>> firstLetterMap(List<String> words){
+        //First I need to know the first letter of the words
+        return words.stream().collect(Collectors.groupingBy(s -> s.charAt(0)));
 
 
 
     }
+}
+
+
+
+
+
 
 
 
