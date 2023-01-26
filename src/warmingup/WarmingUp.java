@@ -17,9 +17,23 @@ public class WarmingUp {
 //      Given a list of strings, use the Stream API to group the strings by their first letter, and return a map where the keys are the first letters and the values are lists of strings that start with that letter.
         System.out.println(lengthMap(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
 
+//      Given a list of people, use the Stream API to group the people by their age, and return a map where the keys are the ages and the values are lists of people with that age.
+        ArrayList<People> persons = new ArrayList<>();
+        persons.add(new People("Brian", 25, "M"));
+        persons.add(new People("Natalia", 25, "F"));
+        persons.add(new People("Felipe", 23, "M"));
+        persons.add(new People("John", 25, "M"));
+        persons.add(new People("Jeymmy", 35, "F"));
+        persons.add(new People("Dante", 10, "M"));
+        persons.add(new People("Franky", 15, "M"));
+        persons.add(new People("Mercedes", 65, "F"));
+        persons.add(new People("Maria", 51, "F"));
+        persons.add(new People("Liliana", 33, "F"));
+
+        System.out.println(ageMap(persons));
+
         /* TO DO:
 
-        * Given a list of people, use the Stream API to group the people by their age, and return a map where the keys are the ages and the values are lists of people with that age.
 
         * Given a list of strings, use the Stream API to filter out strings that have a length less than 4, reverse the remaining strings, and return a new list of the modified strings.
 
@@ -30,22 +44,19 @@ public class WarmingUp {
 
     public static Integer sumEvenNum(List<Integer> integers) {
        return integers.stream().filter(n -> n % 2 == 0).map(i -> i * i).reduce(0, Integer::sum);
-
     }
 
     public static List<String> upCaseLength(List<String> words){
-        //First I need to know the length of the words
         return words.stream().filter(w -> w.length() > 5).map(String::toUpperCase).collect(Collectors.toList());
-
     }
     public static Map<Character,List<String>> firstLeterMap(List<String> words){
-        //First I need to know the length of the words
         return words.stream().collect(Collectors.groupingBy(s -> s.charAt(0)));
-
     }
     public static Map<Integer,List<String>> lengthMap(List<String> words){
-        //First I need to know the length of the words
         return words.stream().collect(Collectors.groupingBy(String::length));
+    }
 
+    public static Map<Integer, List<String>> ageMap(ArrayList<People> people){
+        return  people.stream().collect(Collectors.groupingBy(People::getAge, Collectors.mapping(People::getName, Collectors.toList())));
     }
 }
