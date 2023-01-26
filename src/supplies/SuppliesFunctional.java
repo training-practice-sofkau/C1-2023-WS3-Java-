@@ -1,6 +1,7 @@
 package supplies;
 
 
+import supplies.sales.Customer;
 import supplies.sales.Database;
 import supplies.sales.Product;
 import supplies.sales.Sale;
@@ -13,7 +14,9 @@ public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
         //loadMenu();
-        sales.forEach(System.out::println);
+        //sales.forEach(System.out::println);
+
+        loadMenu();
 
     }
 
@@ -35,10 +38,10 @@ public class SuppliesFunctional {
         String op=sc.nextLine();
         switch(op){
             case "1":
-
+                //System.out.println(ex1SalesNY(sales));
                 break;
             case "2":
-
+                System.out.println(ex2CustomerSat(sales));
                 break;
             case "3":
 
@@ -54,6 +57,29 @@ public class SuppliesFunctional {
         }
 
     }
+
+    public static Map<Boolean, List<Sale>> ex1SalesNY (List<Sale> salesNY) {
+        //issue renaming keys
+        return salesNY.stream().collect(Collectors.groupingBy(Sale::getCouponUsed));
+
+                //Map<Boolean, List<Sale>> temp = salesNY.stream().collect(Collectors.groupingBy(Sale::getCouponUsed));
+    }
+
+    public static List<Customer> ex2CustomerSat (List<Sale> salesNY) {
+        OptionalInt lessSat = salesNY.stream().map(sale -> sale.getCustomer().getSatisfaction()).mapToInt(Integer::valueOf).min();
+        return salesNY.stream()
+                .map(sale -> sale.getCustomer())
+                .filter(customer -> customer.getSatisfaction()==lessSat.getAsInt())
+                .collect(Collectors.toList());
+    }
+    /*
+    public static List<Product> ex3Products (List<Sale> salesNY){
+        return salesNY.stream().map(sale -> sale.getItems().)
+    }
+*/
+
+
+
 
 
 
