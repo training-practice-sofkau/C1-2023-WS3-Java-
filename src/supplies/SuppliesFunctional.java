@@ -5,8 +5,6 @@ import supplies.sales.Database;
 import supplies.sales.Product;
 import supplies.sales.Sale;
 
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,8 +14,28 @@ public class SuppliesFunctional {
     public static void main(String[] args) {
         //loadMenu();
         //sales.forEach(System.out::println);
-        
+        loadProductsSold();
 
+    }
+
+    public static void loadProductsSold() {
+        sales.stream()
+                .flatMap(s -> s.getItems().stream())
+                .collect(Collectors.toList())
+                .stream()
+                .map(Product::getName)
+                .collect(Collectors.groupingBy(String::valueOf, Collectors.counting()))
+                .forEach((k, values) -> System.out.println(k + ": " + values));
+    }
+
+    public static void amountProductsPerTag(){
+        sales.stream()
+                .flatMap(s->s.getItems().stream())
+                .collect(Collectors.toList())
+                .stream()
+                .flatMap(p->p.getTags().stream())
+                .collect(Collectors.groupingBy(String::valueOf,Collectors.counting()))
+                .forEach((k, values) -> System.out.println(k + ": " + values));
     }
 
     public static void loadSalesPerYear(){
@@ -61,13 +79,13 @@ public class SuppliesFunctional {
                 loadLowerScore();
                 break;
             case "3":
-
+                amountProductsPerTag();
                 break;
             case "4":
                 loadSalesPerYear();
                 break;
             case "5":
-
+                loadProductsSold();
                 break;
             default:
                 System.out.println("Invalid input. Try again.");
@@ -83,6 +101,5 @@ public class SuppliesFunctional {
         System.out.println("4. Sales categorized per year");
         System.out.println("5. Amount of products per tag");
         System.out.println("6. Exit");
-
     }
 }
