@@ -49,9 +49,25 @@ public class WarmingUp {
 
         /*
         * Given a list of strings, use the Stream API to filter out strings that have a length less than 4, reverse the remaining strings, and return a new list of the modified strings.
+        */
 
+        System.out.println("\nReversed words");
+        System.out.println(reverseFilter(Data.words));
+
+        /*
         * Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
-*/
+        */
+    }
+
+    public static List<String> reverseFilter(List<String> words){
+        return words.stream()
+                .filter(s -> s.length() < 4)
+                .map(s -> {
+                    StringBuilder r = new StringBuilder(String.valueOf(s));
+                    r.reverse();
+                    return r.toString();
+                })
+                .collect(Collectors.toList());
     }
 
     public static Map<Integer, List<People>> peopleGrouper(List<People> people){
