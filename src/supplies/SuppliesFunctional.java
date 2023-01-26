@@ -84,16 +84,18 @@ public class SuppliesFunctional {
     }
 
 
-
-    public static Map<String, Integer> ex4ProductsPerTag (List<Sale> salesNY) {
-        salesNY.stream().
+/*
+    public static Map<List<String>, Long> ex4ProductsPerTag (List<Sale> salesNY) {
+        return salesNY.stream().
                 collect(Collectors.
                         groupingBy(sale -> sale.getItems().stream()
-                                .map(item -> item.getTags().stream())));
+                                .map(item -> item.getTags().stream().collect(Collectors.toList())),
+                                Collectors.counting()));
+                                //Collectors.mapping(Sale::getSaleDate, Collectors.toList())));
 
-        return null;
+        //return null;
     };
-
+*/
 
 
 
