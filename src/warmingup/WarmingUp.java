@@ -1,9 +1,6 @@
 package warmingup;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WarmingUp {
@@ -25,7 +22,7 @@ public class WarmingUp {
         * 7. Given a list of people, use the Stream API to filter out people who are older than 40, sort the remaining people by their age in descending order, and return a new list of the modified people.
 */
         //Ex1
-        System.out.println("Exercise 1.");
+        System.out.println("Exercise 1:");
         System.out.println(ex1EvenNumbers(List.of(1,2,1,2,1,2,1,2,1,10)));
 
         //Ex2
@@ -35,6 +32,10 @@ public class WarmingUp {
         //Ex3
         System.out.println("Exercise 3:");
         System.out.println(ex3LengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+
+        //Ex4
+        System.out.println("Exercise 4:");
+        System.out.println(ex4FirstLetterMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
     }
 
     //Exercise 1
@@ -50,5 +51,10 @@ public class WarmingUp {
     //Exercise 3
     public static Map<Integer,List<String>> ex3LengthMap(List<String> words){
         return words.stream().collect(Collectors.groupingBy(String::length));
+    }
+
+    //Exercise 4
+    public static Map<String,List<String>> ex4FirstLetterMap(List<String> words){
+        return words.stream().collect(Collectors.groupingBy(s-> s.substring(0,1)));
     }
 }
