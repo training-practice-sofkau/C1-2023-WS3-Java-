@@ -66,8 +66,9 @@ public class WarmingUp {
                 .collect(Collectors.toList());
     }
 
-    private static boolean exercise3() {
-        return false;
+    private static Map<Integer, List<String>>  exercise3() {
+        List<String> strings = List.of("Juan", "Jose", "Jerry", "Thomas", "daddy","Kathie");
+        return strings.stream().collect(Collectors.groupingBy(String::length));
     }
 
     private static boolean exercise4() {
