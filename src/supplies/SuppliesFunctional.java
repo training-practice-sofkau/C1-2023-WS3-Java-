@@ -48,10 +48,11 @@ public class SuppliesFunctional {
                 break;
             case "4":
                 Map<Integer, List<Sale>> result4 = case4();
-                result4.forEach((key, value) -> System.out.println(key + ","+ value));
+                result4.forEach((key, value) -> System.out.println((key + 1900) + ","+ value));
                 break;
             case "5":
-                case5();
+                Map<String, Long> result5 = case5();
+                result5.forEach((key, value) -> System.out.println(key  + ","+ value));
                 break;
             case "6":
                 break;
@@ -91,12 +92,12 @@ public class SuppliesFunctional {
                 collect(Collectors.groupingBy(s -> s.getSaleDate().getYear(), Collectors.toList()));
     }
 
-    public static Map<List<String>, Integer> case5() {
+    public static Map<String, Long> case5() {
 
-        return null;
-//        return sales.stream()
-//                .flatMap(sale -> sale.getItems().stream()
-//                .map(Product::getTags)
-//                .collect(Collectors.groupingBy()));
+        return sales.stream()
+                .flatMap(s -> s.getItems().stream())
+                .collect(Collectors.toList())
+                .stream().flatMap(p -> p.getTags().stream())
+                .collect(Collectors.groupingBy(String::valueOf,Collectors.counting()));
     }
 }

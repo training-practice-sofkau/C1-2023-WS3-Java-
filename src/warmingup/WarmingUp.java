@@ -148,7 +148,7 @@ public class WarmingUp {
                 new People("Serena", 60, "F")
         );
 
-        return people.stream().filter(p -> p.getAge() <= 40)
+        return people.stream().filter(p -> p.getAge() > 40)
                 .sorted((p1, p2) -> p2.getAge() - p1.getAge())
                 .collect(Collectors.toList());
     }
