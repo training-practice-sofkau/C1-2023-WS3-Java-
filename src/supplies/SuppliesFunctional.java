@@ -89,7 +89,8 @@ public class SuppliesFunctional {
 
     public static Map<String,Long> productsPerTag(ArrayList<Sale> sales){
 
-        return sales.stream().flatMap(s->s.getItems().stream()).distinct().collect(Collectors.toList()).stream().flatMap(p->p.getTags().stream()).collect(Collectors.groupingBy(String::valueOf,Collectors.counting()));
+        return sales.stream().flatMap(s->s.getItems().stream()).collect(Collectors.toList()).stream().flatMap(p->p.getTags().stream()).collect(Collectors.groupingBy(String::valueOf,Collectors.counting())); // How many products were bought per tag
+        //return sales.stream().flatMap(s->s.getItems().stream()).distinct().collect(Collectors.toList()).stream().flatMap(p->p.getTags().stream()).collect(Collectors.groupingBy(String::valueOf,Collectors.counting())); // How many products are part of a tag
     }
 
 
