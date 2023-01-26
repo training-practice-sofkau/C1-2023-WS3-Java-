@@ -18,7 +18,7 @@ public class WarmingUp {
         * Given a list of strings, use the Stream API to filter out strings that have a length greater than 5, convert the remaining strings to uppercase, and return a new list of the modified strings.
         */
 
-        //System.out.println("\nOriginal list: " + Data.words + "\nFiltered list: " +longWordsFilter(Data.words) + "\n");
+        System.out.println("\nOriginal list: " + Data.words + "\nFiltered list: " +longWordsFilter(Data.words) + "\n");
 
         /*
         * Given a list of strings, use the Stream API to group the strings by their length, and return a map where the keys are the lengths and the values are lists of strings with that length.
@@ -37,11 +37,11 @@ public class WarmingUp {
 */
     }
 
-    //public static Map<Integer,List<String>> lengthMap(List<String> words){
-    //    //First I need to know the length of the words
-    //    return words.stream()
-    //            .collect(Collectors.groupingBy(String::length));
-    //}
+    public static Map<Integer,List<String>> lengthMap(List<String> words){
+        //First I need to know the length of the words
+        return words.stream()
+                .collect(Collectors.groupingBy(String::length));
+    }
 
     public static List<String> longWordsFilter(List<String> words){
 
