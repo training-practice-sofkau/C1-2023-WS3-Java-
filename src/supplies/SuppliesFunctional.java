@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
-        //loadMenu();
-        sales.forEach(System.out::println);
+        loadMenu();
+//        sales.forEach(System.out::println);
 
     }
 
@@ -35,27 +35,69 @@ public class SuppliesFunctional {
         String op=sc.nextLine();
         switch(op){
             case "1":
-
+                Map<String, List<Sale>> result1 = case1();
+                result1.forEach((key, value) -> System.out.println(key + ","+ value));
                 break;
             case "2":
-
+                List<Sale> result2 = case2();
+                result2.forEach(System.out::println);
                 break;
             case "3":
-
+                List<String> result3 = case3();
+                result3.forEach(System.out::println);
                 break;
             case "4":
-
+                Map<Integer, List<Sale>> result4 = case4();
+                result4.forEach((key, value) -> System.out.println((key + 1900) + ","+ value));
                 break;
             case "5":
-
+                Map<String, Long> result5 = case5();
+                result5.forEach((key, value) -> System.out.println(key  + ","+ value));
+                break;
+            case "6":
                 break;
             default:
                 System.out.println("Invalid input. Try again.");
         }
-
     }
 
+    public static Map<String, List<Sale>> case1() {
 
+        return sales.stream()
+                .filter(s -> s.getLocation().equals("New York"))
+                .collect(Collectors.groupingBy(s -> Boolean.TRUE.equals(s.getCouponUsed()) ? "Use" : "No use"));
+    }
 
+    public static List<Sale> case2() {
 
+        return sales.stream()
+                .filter(s -> s.getCustomer().getSatisfaction() < 2 )
+                .sorted((s1, s2) -> s2.getCustomer().getAge() - s1.getCustomer().getAge())
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> case3() {
+
+        return sales.stream()
+                .flatMap(sale -> sale.getItems().stream())
+                .map(Product::getName)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public static Map<Integer, List<Sale> > case4() {
+
+        return sales.stream().
+                collect(Collectors.groupingBy(s -> s.getSaleDate().getYear(), Collectors.toList()));
+    }
+
+    public static Map<String, Long> case5() {
+
+        return sales.stream()
+                .flatMap(s -> s.getItems().stream())
+                .collect(Collectors.toList())
+                .stream().flatMap(p -> p.getTags().stream())
+                .collect(Collectors.groupingBy(String::valueOf,Collectors.counting()));
+    }
 }
