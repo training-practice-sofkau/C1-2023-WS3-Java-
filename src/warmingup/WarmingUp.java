@@ -5,18 +5,23 @@ import java.util.stream.Collectors;
 
 public class WarmingUp {
     public static void main(String[] args) {
-        System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+
 
         System.out.println(filterEven(List.of(1,3,4,5,20,80,17,64,85,12,14)));
+        System.out.println();
         //System.out.println(filterEven(List.of(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)));
         //System.out.println(filterEven(List.of(2,2,4,66,8,4,86,76,24)));
 
         System.out.println(filterString(List.of("soup", "principle", "xbox", "exit", "abandon", "above",
                 "academic", "accident", "accompany", "according", "accomplish")));
-
+        System.out.println();
+        System.out.println(lengthMap(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
+        System.out.println();
         System.out.println(gruppingByLetter(List.of("Antoni","Anita", "Veronica", "Alberto", "Ana",
                 "Maria", "Magali", "Zulma", "Diego", "Daisy", "Sandra", "Samanta")));
 
+        System.out.println(reverseString(List.of("apple","melon","pinneapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya", "opu")));
+        System.out.println();
         People p1=new People("Diego", 24, "M");
         People p2=new People("Camila", 23, "F");
         People p3=new People("Caro", 30, "F");
@@ -28,7 +33,7 @@ public class WarmingUp {
         People p9=new People("juan", 25, "M");
         People p10=new People("Freddy", 125, "M");
         System.out.println(gruppingPeopleByAge(List.of(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)));
-
+        System.out.println();
         System.out.println(filterMorePeople(List.of(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)));
 
 
@@ -70,17 +75,22 @@ public class WarmingUp {
     }
 
     //6th excercise
-    public static List<String> reverseString (List<String> list){
-        List<String> p = list.stream().
-                filter(i->i.length()<4).collect(Collectors.toList());
+    public static List<StringBuilder> reverseString (List<String> list){
+        List<StringBuilder> l = new ArrayList<>();
+        list.stream().
+                filter(i->i.length()>4).collect(Collectors.toList()).stream().
+                forEach(
+                        i->{
+                            StringBuilder sb = new StringBuilder(i);
+                            l.add(sb.reverse());
+                        });
 
-        return null;
+        return l;
     }
 
     //7th excercise
     public static List<People> filterMorePeople (List<People> list){
 
-        //.stream().sorted(Comparator.comparingInt(People::getAge)).collect(Collectors.toList())
         return list.stream().
                 filter(i->i.getAge()>40).
                 collect(Collectors.toList())

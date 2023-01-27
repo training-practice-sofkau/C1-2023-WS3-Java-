@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
-        loadMenu();
-        //sales.forEach(System.out::println);
+        //loadMenu();
+        sales.forEach(System.out::println);
 
     }
 
@@ -42,13 +42,12 @@ public class SuppliesFunctional {
                 System.out.println(lessSatisfaction());
                 break;
             case "3":
-                System.out.println(test());
+                System.out.println(allProducts());
                 break;
             case "4":
-
                 break;
             case "5":
-
+                System.out.println(salesPerYear());
                 break;
             default:
                 System.out.println("Invalid input. Try again.");
@@ -73,7 +72,7 @@ public class SuppliesFunctional {
         return map1;
     }
 
-    // 1nd excercise
+    // 2nd excercise
     public static List<Customer> lessSatisfaction (){
         List <Customer> list = new ArrayList<>();
         sales.stream().forEach(i->list.add(i.getCustomer()));
@@ -83,12 +82,14 @@ public class SuppliesFunctional {
                 collect(Collectors.toList()).stream().
                 sorted(Comparator.comparingInt(Customer::getAge).reversed()).collect(Collectors.toList());
     }
-
-    public static List<Customer> test(){
-        return null;
+    // 3rd excercise
+    public static Set<String> allProducts(){
+        HashSet<String> map = new HashSet<>();
+        sales.stream().flatMap(x->x.getItems().stream()).map(Product::getName).forEach(i->map.add(i));
+        return map;
     }
 
-
-
-
+    public static Map<Integer,List<Sale>> salesPerYear(){
+        return sales.stream().collect(Collectors.groupingBy(i->i.getSaleDate().getYear()));
+    }
 }
