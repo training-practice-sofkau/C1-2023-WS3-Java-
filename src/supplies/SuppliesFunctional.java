@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
-        //loadMenu();
-        sales.forEach(System.out::println);
+        loadMenu();
+        //sales.forEach(System.out::println);
 
     }
 
@@ -75,12 +75,12 @@ public class SuppliesFunctional {
     // 2nd excercise
     public static List<Customer> lessSatisfaction (){
         List <Customer> list = new ArrayList<>();
-        sales.stream().forEach(i->list.add(i.getCustomer()));
+        sales.stream().sorted(Comparator.comparingInt(i-> i.getCustomer().getSatisfaction()))
+                .forEach(i->list.add(i.getCustomer()));
 
         return list.stream().
                 filter(i->i.getSatisfaction()==list.get(0).getSatisfaction()).
-                collect(Collectors.toList()).stream().
-                sorted(Comparator.comparingInt(Customer::getAge).reversed()).collect(Collectors.toList());
+                collect(Collectors.toList());
     }
     // 3rd excercise
     public static Set<String> allProducts(){
@@ -89,6 +89,7 @@ public class SuppliesFunctional {
         return map;
     }
 
+    //5th excersice
     public static Map<Integer,List<Sale>> salesPerYear(){
         return sales.stream().collect(Collectors.groupingBy(i->i.getSaleDate().getYear()));
     }
