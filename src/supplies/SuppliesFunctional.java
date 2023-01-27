@@ -47,7 +47,7 @@ public class SuppliesFunctional {
                 System.out.println(saleYear(sales));
                 break;
             case "5":
-
+                System.out.println(tagProducts(sales));
                 break;
             default:
                 System.out.println("Invalid input. Try again.");
@@ -75,9 +75,12 @@ public class SuppliesFunctional {
     public static Map<Integer, List<Sale>> saleYear(ArrayList<Sale> sales){
         return sales.stream().collect(Collectors.groupingBy(x -> x.getSaleDate().getYear() + 1900));
     }
-//    public static OptionalInt lessSatisfactionNum(ArrayList<Sale> sales){
-//        return sales.stream().mapToInt(x -> x.getCustomer().getSatisfaction()).min();
-//    }
 
+    public static Map<String,Long> tagProducts(ArrayList<Sale> sales){
+        return sales.stream().flatMap( s -> s.getItems().stream())
+                .collect(Collectors.toList())
+                .stream().flatMap( p -> p.getTags().stream())
+                .collect(Collectors.groupingBy(String::valueOf,Collectors.counting())); // How many products were bought per tag
+    }
 
 }
