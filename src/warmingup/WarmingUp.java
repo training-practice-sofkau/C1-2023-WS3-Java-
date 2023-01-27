@@ -5,6 +5,18 @@ import java.util.stream.Collectors;
 
 public class WarmingUp {
     public static void main(String[] args) {
+        ArrayList<People> persons = new ArrayList<>();
+        persons.add(new People("Brian", 25, "M"));
+        persons.add(new People("Natalia", 25, "F"));
+        persons.add(new People("Felipe", 23, "M"));
+        persons.add(new People("John", 70, "M"));
+        persons.add(new People("Jeymmy", 35, "F"));
+        persons.add(new People("Dante", 10, "M"));
+        persons.add(new People("Franky", 15, "M"));
+        persons.add(new People("Mercedes", 65, "F"));
+        persons.add(new People("Maria", 51, "F"));
+        persons.add(new People("Liliana", 90, "F"));
+
 //      Given a list of integers, use the Stream API to filter out even numbers, square the remaining numbers, and return the sum of the squared numbers.
         System.out.println(sumEvenNum(List.of(1, 2, 3, 4, 10, 55 , 88, 77, 44, 11, 466, 52, 99)));
 
@@ -18,18 +30,6 @@ public class WarmingUp {
         System.out.println(firstLeterMap(List.of("apple","melon","pineapple","mango","lemon","blueberry","banana","strawberry","kiwi","maracuya","pitahaya")));
 
 //      Given a list of people, use the Stream API to group the people by their age, and return a map where the keys are the ages and the values are lists of people with that age.
-        ArrayList<People> persons = new ArrayList<>();
-        persons.add(new People("Brian", 25, "M"));
-        persons.add(new People("Natalia", 25, "F"));
-        persons.add(new People("Felipe", 23, "M"));
-        persons.add(new People("John", 70, "M"));
-        persons.add(new People("Jeymmy", 35, "F"));
-        persons.add(new People("Dante", 10, "M"));
-        persons.add(new People("Franky", 15, "M"));
-        persons.add(new People("Mercedes", 65, "F"));
-        persons.add(new People("Maria", 51, "F"));
-        persons.add(new People("Liliana", 90, "F"));
-
         System.out.println(ageMap(persons));
 
 //      Given a list of strings, use the Stream API to filter out strings that have a length less than 4, reverse the remaining strings, and return a new list of the modified strings.

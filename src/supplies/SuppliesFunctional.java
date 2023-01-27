@@ -35,7 +35,7 @@ public class SuppliesFunctional {
         String op=sc.nextLine();
         switch(op){
             case "1":
-                System.out.println(cuponNy(sales));
+                System.out.println(couponNy(sales));
                 break;
             case "2":
                 System.out.println(lessSatisfaction(sales));
@@ -56,7 +56,7 @@ public class SuppliesFunctional {
     }
 
 
-    public static Map<String, List<Sale>> cuponNy(ArrayList<Sale> sales){
+    public static Map<String, List<Sale>> couponNy(ArrayList<Sale> sales){
         return sales.stream().filter(s -> Objects.equals(s.getLocation(), "New York"))
                 .collect(Collectors.groupingBy(x -> x.getCouponUsed() ? "Use" : "No use"));
     }
