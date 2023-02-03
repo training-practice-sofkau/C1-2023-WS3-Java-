@@ -1,6 +1,7 @@
 package supplies;
 
 
+import supplies.sales.Customer;
 import supplies.sales.Database;
 import supplies.sales.Product;
 import supplies.sales.Sale;
@@ -12,9 +13,8 @@ import java.util.stream.Collectors;
 public class SuppliesFunctional {
     static ArrayList<Sale> sales = Database.loadDatabase();
     public static void main(String[] args) {
-        //loadMenu();
         sales.forEach(System.out::println);
-
+        loadMenu();
     }
 
     public static void menu(){
@@ -35,19 +35,19 @@ public class SuppliesFunctional {
         String op=sc.nextLine();
         switch(op){
             case "1":
-
+                System.out.println(couponNy(sales));
                 break;
             case "2":
-
+                System.out.println(lessSatisfaction(sales));
                 break;
             case "3":
-
+                System.out.println(soldSupl(sales));
                 break;
             case "4":
-
+                System.out.println(saleYear(sales));
                 break;
             case "5":
-
+                System.out.println(tagProducts(sales));
                 break;
             default:
                 System.out.println("Invalid input. Try again.");
@@ -56,6 +56,31 @@ public class SuppliesFunctional {
     }
 
 
+    public static Map<String, List<Sale>> couponNy(ArrayList<Sale> sales){
+        return sales.stream().filter(s -> Objects.equals(s.getLocation(), "New York"))
+                .collect(Collectors.groupingBy(x -> x.getCouponUsed() ? "Use" : "No use"));
+    }
 
+    public static List<Customer> lessSatisfaction(ArrayList<Sale> sales){
+        return sales.stream().map(Sale::getCustomer)
+                .filter(customer -> customer.getSatisfaction().equals(1))
+                .sorted(Comparator.comparing(Customer::getEmail)).collect(Collectors.toList());
+    }
+
+    public static List<String> soldSupl(ArrayList<Sale> sales){
+        return sales.stream().flatMap(s -> s.getItems().stream())
+                .map(Product::getName).distinct().collect(Collectors.toList());
+    }
+
+    public static Map<Integer, List<Sale>> saleYear(ArrayList<Sale> sales){
+        return sales.stream().collect(Collectors.groupingBy(x -> x.getSaleDate().getYear() + 1900));
+    }
+
+    public static Map<String,Long> tagProducts(ArrayList<Sale> sales){
+        return sales.stream().flatMap( s -> s.getItems().stream())
+                .collect(Collectors.toList())
+                .stream().flatMap( p -> p.getTags().stream())
+                .collect(Collectors.groupingBy(String::valueOf,Collectors.counting())); // How many products were bought per tag
+    }
 
 }
